@@ -206,7 +206,7 @@ declare type setPresenceOpts = {
 declare type addAndRemoveFromRole = {
   serverID: string,
   userID: string,
-  role: string
+  roleID: string
 }
 
 declare type moveUserToOpts = {
@@ -395,6 +395,7 @@ declare namespace Discord {
     deaf: boolean;
     status: userStatus;
     voice_channel_id: string;
+    nick: string;
   }
 
   export class Role extends Resource {
