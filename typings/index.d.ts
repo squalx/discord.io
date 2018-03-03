@@ -539,7 +539,7 @@ declare namespace Discord {
      */
     joinVoiceChannel(channelID: string, callback?: callbackFunc): void
     leaveVoiceChannel(channelID: string, callback?: callbackFunc): void
-    getAudioContext(channelID: string, callback: (error, stream) => void): void
+    getAudioContext(channelID: string, callback: (error: string, stream: NodeJS.ReadableStream) => void): void
 
     /**
      * USERS
