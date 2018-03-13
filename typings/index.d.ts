@@ -280,7 +280,7 @@ declare type editRoleOpts = {
   name: string,
   hoist: boolean,
   permissions: permissions,
-  color: colors,
+  color: colors | number,
   mentionable: boolean,
   // I dont know what position is and it is unused in current code
   position: any
