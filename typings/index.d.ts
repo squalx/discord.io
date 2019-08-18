@@ -97,7 +97,9 @@ declare interface permissions {
   GENERAL_MANAGE_ROLES?: boolean;
   GENERAL_MANAGE_NICKNAMES?: boolean;
   GENERAL_CHANGE_NICKNAME?: boolean;
+  GENERAL_MANAGE_WEBHOOKS?: boolean;
 
+  TEXT_ADD_REACTIONS?: boolean;
   TEXT_READ_MESSAGES?: boolean;
   TEXT_SEND_MESSAGES?: boolean;
   TEXT_SEND_TTS_MESSAGE?: boolean;
@@ -351,6 +353,12 @@ declare type getMembersOpts = {
   after: string
 }
 
+declare type reactionOpts = {
+  channelID: string,
+  messageID: string,
+  reaction: string
+}
+
 /**
  * CLASSES
  */
@@ -399,10 +407,17 @@ declare namespace Discord {
   }
 
   export class DMChannel extends Resource {
-    recipient: Object;
+    recipient: DMRecipient;
     last_message_id: string;
     id: string;
   }
+
+   export class DMRecipient extends Resource {
+     username: string;
+     id: string;
+     discriminator: string;
+     avatar: string;
+   }
 
   export class User extends Resource {
     username: string;
@@ -533,7 +548,7 @@ declare namespace Discord {
     pinMessage(options: pinMessageOpts, callback?: callbackFunc): void
     deletePinnedMessage(options: deletePinnedMessageOpts, callback?: callbackFunc): void
     getPinnedMessages(options: getPinnedMessagesOpts, callback?: callbackFunc): void
-
+    addReaction(options: reactionOpts, callback?: callbackFunc): void
     /**
      * VOICE CHANNELS
      */
