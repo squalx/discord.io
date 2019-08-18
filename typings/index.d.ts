@@ -234,7 +234,7 @@ declare type setPresenceOpts = {
 declare type addAndRemoveFromRole = {
   serverID: string,
   userID: string,
-  role: string
+  roleID: string
 }
 
 declare type moveUserToOpts = {
@@ -282,7 +282,7 @@ declare type editRoleOpts = {
   name: string,
   hoist: boolean,
   permissions: permissions,
-  color: colors,
+  color: colors | number,
   mentionable: boolean,
   // I dont know what position is and it is unused in current code
   position: any
@@ -290,7 +290,7 @@ declare type editRoleOpts = {
 
 declare type deleteRoleOpts = {
   serverID: string,
-  role: string
+  roleID: string
 }
 
 declare type editNicknameOpts = {
@@ -436,6 +436,7 @@ declare namespace Discord {
     deaf: boolean;
     status: userStatus;
     voice_channel_id: string;
+    nick: string;
   }
 
   export class Role extends Resource {
@@ -553,7 +554,7 @@ declare namespace Discord {
      */
     joinVoiceChannel(channelID: string, callback?: callbackFunc): void
     leaveVoiceChannel(channelID: string, callback?: callbackFunc): void
-    getAudioContext(channelID: string, callback: (error, stream) => void): void
+    getAudioContext(channelID: string, callback: (error: string, stream: NodeJS.ReadableStream) => void): void
 
     /**
      * USERS
